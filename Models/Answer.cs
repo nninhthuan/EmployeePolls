@@ -9,11 +9,12 @@ namespace EmployeePolls.Models
     public class Answer
     {
         [ScaffoldColumn(false)]
+        [Key]
         public string AnswerId { get; set; }
         public string NumberOfOptionOne { get; set; }
         public bool IsSelectedOptionOne { get; set; }
         public string NumberOfOptionTwo { get; set; }
         public bool IsSelectedOptionTwo { get; set; }
-        public virtual ICollection<UserAnswer> UserAnswer { get; set; }
+        public virtual ICollection<UserAnswer> UserAnswer { get; set; } = new List<UserAnswer>();
     }
 }

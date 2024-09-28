@@ -3,7 +3,7 @@ namespace EmployeePolls.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitDB : DbMigration
+    public partial class CreateInit : DbMigration
     {
         public override void Up()
         {
