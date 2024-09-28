@@ -354,13 +354,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202409281418503_InitDB.cs" />
-    <Compile Include="Migrations\202409281418503_InitDB.Designer.cs">
-      <DependentUpon>202409281418503_InitDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202409281424019_UpdateDB.cs" />
-    <Compile Include="Migrations\202409281424019_UpdateDB.Designer.cs">
-      <DependentUpon>202409281424019_UpdateDB.cs</DependentUpon>
+    <Compile Include="Migrations\202409281443544_CreateInit.cs" />
+    <Compile Include="Migrations\202409281443544_CreateInit.Designer.cs">
+      <DependentUpon>202409281443544_CreateInit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
@@ -409,11 +405,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202409281418503_InitDB.resx">
-      <DependentUpon>202409281418503_InitDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202409281424019_UpdateDB.resx">
-      <DependentUpon>202409281424019_UpdateDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202409281443544_CreateInit.resx">
+      <DependentUpon>202409281443544_CreateInit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

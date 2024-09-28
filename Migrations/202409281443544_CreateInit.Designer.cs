@@ -7,13 +7,13 @@ namespace EmployeePolls.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InitDB : IMigrationMetadata
+    public sealed partial class CreateInit : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitDB));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateInit));
         
         string IMigrationMetadata.Id
         {
-            get { return "202409281418503_InitDB"; }
+            get { return "202409281443544_CreateInit"; }
         }
         
         string IMigrationMetadata.Source

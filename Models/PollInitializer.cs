@@ -6,7 +6,7 @@ using System.Web;
 
 namespace EmployeePolls.Models
 {
-    public class PollInitializer : DropCreateDatabaseAlways<PollContext>
+    public class PollInitializer : DropCreateDatabaseIfModelChanges<PollContext>
     {
     }
 }

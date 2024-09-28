@@ -14,7 +14,7 @@ namespace EmployeePolls.Models
         public string AvatarURL { get; set; }
         public string QuestionId { get; set; }
         public virtual ICollection<Question> Questions{ get; set; }
-        public virtual ICollection<UserAnswer> UserAnswer { get; set; }
+        public virtual ICollection<UserAnswer> UserAnswer { get; set; } = new List<UserAnswer>();
 
 
     }
