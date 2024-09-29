@@ -13,6 +13,24 @@ namespace EmployeePolls
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
+
+            routes.MapPageRoute(
+                "HomeRoute",
+                "",
+                "~/Home_Page/HomePage.aspx"
+            );
+
+            routes.MapPageRoute(
+                "LeaderboardRoute",
+                "leader-board",
+                "~/Leaderboard/Leaderboard.aspx"
+            );
+
+            routes.MapPageRoute(
+                "CreatePollRoute",
+                "create",
+                "~/Create_Poll/CreatePoll.aspx"
+            );
         }
     }
 }
