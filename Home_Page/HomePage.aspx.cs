@@ -11,18 +11,25 @@ namespace EmployeePolls.Home_Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void OnShowQuestions(object sender, EventArgs e)
         {
-            if (Switch_Question.Checked)
-            {
-                Switch_Question.Text = "Unanswered Questions";
-            }
-            else
+            showQuestionType();
+        }
+
+        private void showQuestionType()
+        {
+            if (Switch_Question.Text == "Unanswered Questions")
             {
                 Switch_Question.Text = "Answered Questions";
+                Switch_Question.CssClass = "btn btn-success";
+            }
+            else if (Switch_Question.Text == "Answered Questions")
+            {
+                Switch_Question.Text = "Unanswered Questions";
+                Switch_Question.CssClass = "btn btn-danger";
+
             }
         }
     }
