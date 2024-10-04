@@ -10,12 +10,13 @@ namespace EmployeePolls.Models
     public class UserAnswer
     {
         [ScaffoldColumn(false)]
-        public string UserAnswerId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int UserAnswerId { get; set; }
 
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public virtual User User { get; set; }
 
-        public string AnswerId { get; set; }
+        public int AnswerId { get; set; }
         public virtual Answer Answer { get; set; }
 
     }
