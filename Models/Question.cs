@@ -15,6 +15,9 @@ namespace EmployeePolls.Models
         public DateTime Timestamp { get; set; }
         public int AnswerId { get; set; }
         public virtual Answer Answers { get; set; }
-        public virtual User User { get; set; }
+
+        //Lesson Learn:
+        //With code first, in model we have any property, then it allow us create column for that property
+        //If Code First generates table with column does not match with property im model. You dont need to insert data for this column
     }
 }
