@@ -15,10 +15,7 @@ namespace EmployeePolls.Models
         public int AnswerId { get; set; }
         public string VotedOptionOne { get; set; }
         public string TextOptionOne { get; set; }
-        public string NumberOfOptionOne { get; set; }
         public string VotedOptionTwo { get; set; }
         public string TextOptionTwo { get; set; }
-        public string NumberOfOptionTwo { get; set; }
-        public virtual ICollection<UserAnswer> UserAnswer { get; set; } = new List<UserAnswer>();
     }
 }
