@@ -384,6 +384,22 @@
     <Compile Include="Migrations\202409281443544_CreateInit.Designer.cs">
       <DependentUpon>202409281443544_CreateInit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410021551358_AddIdentity.cs" />
+    <Compile Include="Migrations\202410021551358_AddIdentity.Designer.cs">
+      <DependentUpon>202410021551358_AddIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410021603522_AddIdentity1.cs" />
+    <Compile Include="Migrations\202410021603522_AddIdentity1.Designer.cs">
+      <DependentUpon>202410021603522_AddIdentity1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410021609045_QuestionIdisStr.cs" />
+    <Compile Include="Migrations\202410021609045_QuestionIdisStr.Designer.cs">
+      <DependentUpon>202410021609045_QuestionIdisStr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410021613033_UpdateQuestionTable.cs" />
+    <Compile Include="Migrations\202410021613033_UpdateQuestionTable.Designer.cs">
+      <DependentUpon>202410021613033_UpdateQuestionTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -434,6 +450,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202409281443544_CreateInit.resx">
       <DependentUpon>202409281443544_CreateInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410021551358_AddIdentity.resx">
+      <DependentUpon>202410021551358_AddIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410021603522_AddIdentity1.resx">
+      <DependentUpon>202410021603522_AddIdentity1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410021609045_QuestionIdisStr.resx">
+      <DependentUpon>202410021609045_QuestionIdisStr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410021613033_UpdateQuestionTable.resx">
+      <DependentUpon>202410021613033_UpdateQuestionTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
