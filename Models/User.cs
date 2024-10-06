@@ -13,7 +13,6 @@ namespace EmployeePolls.Models
         public string Password { get; set; }
         public string Username { get; set; }
         public string AvatarURL { get; set; }
-        public string QuestionId { get; set; }
-        public virtual ICollection<Question> Questions{ get; set; }
+        public virtual ICollection<Question> Questions { get; set; }
     }
 }
