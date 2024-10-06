@@ -20,6 +20,20 @@ namespace EmployeePolls.Migrations
                 .PrimaryKey(t => t.AnswerId);
             
             CreateTable(
+                "dbo.QuestionAnswers",
+                c => new
+                    {
+                        QAnsID = c.Int(nullable: false, identity: true),
+                        QuestionId = c.String(maxLength: 128),
+                        AnswerId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.QAnsID)
+                .ForeignKey("dbo.Answers", t => t.AnswerId, cascadeDelete: true)
+                .ForeignKey("dbo.Questions", t => t.QuestionId)
+                .Index(t => t.QuestionId)
+                .Index(t => t.AnswerId);
+            
+            CreateTable(
                 "dbo.Questions",
                 c => new
                     {
@@ -30,9 +44,7 @@ namespace EmployeePolls.Migrations
                         User_UserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.QuestionId)
-                .ForeignKey("dbo.Answers", t => t.AnswerId, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.User_UserId)
-                .Index(t => t.AnswerId)
                 .Index(t => t.User_UserId);
             
             CreateTable(
@@ -43,7 +55,6 @@ namespace EmployeePolls.Migrations
                         Password = c.String(),
                         Username = c.String(),
                         AvatarURL = c.String(),
-                        QuestionId = c.String(),
                     })
                 .PrimaryKey(t => t.UserId);
             
@@ -52,11 +63,14 @@ namespace EmployeePolls.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.Questions", "User_UserId", "dbo.Users");
-            DropForeignKey("dbo.Questions", "AnswerId", "dbo.Answers");
+            DropForeignKey("dbo.QuestionAnswers", "QuestionId", "dbo.Questions");
+            DropForeignKey("dbo.QuestionAnswers", "AnswerId", "dbo.Answers");
             DropIndex("dbo.Questions", new[] { "User_UserId" });
-            DropIndex("dbo.Questions", new[] { "AnswerId" });
+            DropIndex("dbo.QuestionAnswers", new[] { "AnswerId" });
+            DropIndex("dbo.QuestionAnswers", new[] { "QuestionId" });
             DropTable("dbo.Users");
             DropTable("dbo.Questions");
+            DropTable("dbo.QuestionAnswers");
             DropTable("dbo.Answers");
         }
     }

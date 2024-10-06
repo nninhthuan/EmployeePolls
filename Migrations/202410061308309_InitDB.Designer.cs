@@ -13,7 +13,7 @@ namespace EmployeePolls.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202410041545130_InitDB"; }
+            get { return "202410061308309_InitDB"; }
         }
         
         string IMigrationMetadata.Source
