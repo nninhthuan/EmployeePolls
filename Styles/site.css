@@ -1,0 +1,11 @@
+﻿body {
+}
+
+/*Home Page*/
+.home-polls-container {
+}
+.home-polls-container .toggle-question-polls input {
+    display: flex;
+    margin: 15px auto;
+    width: 230px;
+}

@@ -54,3 +54,22 @@ INSERT INTO QuestionAnswers VALUES ('vthrdm985a262al8qx3do', 6)
 INSERT INTO QuestionAnswers VALUES ('xj352vofupe1dqz9emx13r', 7)
 INSERT INTO QuestionAnswers VALUES ('xj352vofupe1dqz9emx13r', 8)
 INSERT INTO QuestionAnswers VALUES ('xj352vofupe1dqz9emx13r', 9)
+
+
+USE Employee_Polls
+SELECT * FROM [Employee_Polls].[dbo].[Users]
+SELECT * FROM [Employee_Polls].[dbo].[Answers]
+SELECT * FROM [Employee_Polls].[dbo].[Questions]
+SELECT * FROM QuestionAnswers
+
+
+SELECT u.UserId, COALESCE(COUNT(q.QuestionId), 0) , COALESCE(COUNT(q.QuestionId), 0) AS NumberOfQuestions
+FROM Users u
+LEFT JOIN Questions q ON u.UserId = q.Author
+GROUP BY u.UserId;
+
+SELECT QAnsID, Questions.QuestionId, QuestionAnswers.AnswerId,	Author FROM QuestionAnswers
+INNER JOIN Questions ON Questions.QuestionId = QuestionAnswers.QuestionId
+INNER JOIN Answers ON Answers.AnswerId = QuestionAnswers.AnswerId
+
+

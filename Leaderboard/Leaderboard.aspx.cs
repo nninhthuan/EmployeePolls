@@ -11,7 +11,7 @@ namespace EmployeePolls.Leaderboard
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            AppSettings.Read("Users");
         }
     }
 }
