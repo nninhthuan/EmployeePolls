@@ -63,13 +63,27 @@ SELECT * FROM [Employee_Polls].[dbo].[Questions]
 SELECT * FROM QuestionAnswers
 
 
-SELECT u.UserId, COALESCE(COUNT(q.QuestionId), 0) , COALESCE(COUNT(q.QuestionId), 0) AS NumberOfQuestions
-FROM Users u
-LEFT JOIN Questions q ON u.UserId = q.Author
-GROUP BY u.UserId;
-
-SELECT QAnsID, Questions.QuestionId, QuestionAnswers.AnswerId,	Author FROM QuestionAnswers
-INNER JOIN Questions ON Questions.QuestionId = QuestionAnswers.QuestionId
-INNER JOIN Answers ON Answers.AnswerId = QuestionAnswers.AnswerId
-
-
+SELECT UserId,
+       AnsweredQuestions,
+       CreatedQuestions,
+       AvatarURL
+FROM
+  (SELECT VotedOption, SUM(VoteCount) AS AnsweredQuestions
+   FROM
+     (SELECT VotedOptionOne AS VotedOption, COUNT(*) AS VoteCount
+      FROM Answers
+      GROUP BY VotedOptionOne
+      UNION ALL 
+	  SELECT VotedOptionTwo AS VotedOption, COUNT(*) AS VoteCount
+      FROM Answers
+      GROUP BY VotedOptionTwo) AS CombinedVotes
+   GROUP BY VotedOption) AS T1
+INNER JOIN
+  (SELECT Users.UserId,
+          COALESCE(COUNT(Questions.QuestionId), 0) AS CreatedQuestions,
+          Users.AvatarURL
+   FROM Users
+   LEFT JOIN Questions ON Questions.Author = Users.UserId
+   GROUP BY Users.UserId,
+            Users.AvatarURL) AS T2 ON T1.VotedOption = T2.UserId
+ORDER BY AnsweredQuestions DESC
