@@ -1,0 +1,23 @@
+﻿body {
+}
+th,
+td {
+    min-width: 200px;
+    text-align: center !important;
+}
+tr {
+    min-height: 100px;
+}
+/*Home Page*/
+.home-polls-container {
+}
+.home-polls-container .toggle-question-polls input {
+    display: flex;
+    margin: 15px auto;
+    width: 230px;
+}
+
+/*Leaderboard Page*/
+.leaderboard-container {
+    text-align: center;
+}
