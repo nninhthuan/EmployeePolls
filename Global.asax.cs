@@ -20,6 +20,8 @@ namespace EmployeePolls
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Database.SetInitializer(new PollInitializer());
+
+            AppSettings.LoadData();
         }
     }
 }

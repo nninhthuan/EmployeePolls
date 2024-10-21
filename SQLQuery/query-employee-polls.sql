@@ -1,4 +1,12 @@
 USE Employee_Polls
+
+--CREATE TABLE SETTINGS
+CREATE TABLE Settings (
+	ID int IDENTITY(100, 1),
+	PARAMETER_NAME nvarchar(max),
+	PARAMETER_VALUE varchar(50)
+);
+
 SELECT * FROM [Employee_Polls].[dbo].[Users]
 SELECT * FROM [Employee_Polls].[dbo].[Answers]
 SELECT * FROM [Employee_Polls].[dbo].[Questions]
@@ -55,6 +63,12 @@ INSERT INTO QuestionAnswers VALUES ('xj352vofupe1dqz9emx13r', 7)
 INSERT INTO QuestionAnswers VALUES ('xj352vofupe1dqz9emx13r', 8)
 INSERT INTO QuestionAnswers VALUES ('xj352vofupe1dqz9emx13r', 9)
 
+SELECT * FROM Settings
+--insert value for Settings table
+INSERT INTO Settings VALUES ('ORDER_BY_AUTHOR_ALPHABET', 'DESC')
+INSERT INTO Settings VALUES ('ORDER_BY_ANSWERED_QUESTIONS', 'DESC')
+INSERT INTO Settings VALUES ('ORDER_BY_CREATED_QUESTIONS', 'DESC')
+
 
 USE Employee_Polls
 SELECT * FROM [Employee_Polls].[dbo].[Users]
@@ -79,7 +93,7 @@ FROM
       GROUP BY VotedOptionTwo) AS CombinedVotes
    GROUP BY VotedOption) AS T1
 INNER JOIN
-  (SELECT Users.UserId,
+  (SELECT Users.UserId AS Author,
           COALESCE(COUNT(Questions.QuestionId), 0) AS CreatedQuestions,
           Users.AvatarURL
    FROM Users
@@ -87,3 +101,4 @@ INNER JOIN
    GROUP BY Users.UserId,
             Users.AvatarURL) AS T2 ON T1.VotedOption = T2.UserId
 ORDER BY AnsweredQuestions DESC
+SELECT * FROM SETTINGS WHERE [PARAMETER_NAME] = 'ORDER_BY_ANSWERED_QUESTIONS'
