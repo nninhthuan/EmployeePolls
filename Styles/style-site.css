@@ -21,3 +21,6 @@ tr {
 .leaderboard-container {
     text-align: center;
 }
+.leaderboard-container .filter-bar {
+    display: flex;
+}
