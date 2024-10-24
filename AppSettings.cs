@@ -10,6 +10,9 @@ namespace EmployeePolls
 {
     public class AppSettings
     {
+        public const string ANSWERED_QUESTIONS_LABEL = "Answered Questions";
+        public const string UNANSWERED_QUESTIONS_LABEL = "Unanswered Questions";
+
         public const string AUTHOR_CONSTRAINT = "Author";
         public const string ANSWERED_CONSTRAINT = "AnsweredQuestions";
         public const string CREATED_CONSTRAINT = "CreatedQuestions";

@@ -69,7 +69,6 @@ namespace EmployeePolls.Leaderboard
                     BindGrid(AppSettings.CREATED_CONSTRAINT, AppSettings.ORDER_BY_CREATED_QUESTIONS);
                     break;
             }
-
         }
 
     }
