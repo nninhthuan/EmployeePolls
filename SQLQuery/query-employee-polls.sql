@@ -1,11 +1,6 @@
 USE Employee_Polls
 
---CREATE TABLE SETTINGS
-CREATE TABLE Settings (
-	ID int IDENTITY(100, 1),
-	PARAMETER_NAME nvarchar(max),
-	PARAMETER_VALUE varchar(50)
-);
+ALTER TABLE Questions ADD CONSTRAINT FK_Answer_AnswerId FOREIGN KEY (AnswerId) REFERENCES Answers (AnswerId);
 
 SELECT * FROM [Employee_Polls].[dbo].[Users]
 SELECT * FROM [Employee_Polls].[dbo].[Answers]
@@ -44,15 +39,22 @@ INSERT INTO Answers VALUES ('', 'deploy to production once every two weeks', 'ty
 
 --insert value for Questions table
 SELECT * FROM [Employee_Polls].[dbo].[Questions]
-INSERT INTO Questions VALUES ('8xf0y6ziyjabvozdd253nd', 'sarahedo', 'sarahedo', '2016-06-29 09:21:12.634') --1
-INSERT INTO Questions VALUES ('6ni6ok3ym7mf1p33lnez', 'mtsamis', 'mtsamis', '2016-07-14 14:02:47.190')--2, 3
-INSERT INTO Questions VALUES ('am8ehyc8byjqgar0jgpub9', 'sarahedo', 'sarahedo', '2017-03-04 05:22:47.190') --4
+INSERT INTO Questions VALUES ('8xf0y6ziyjabvozdd253nd', 'sarahedo', 'sarahedo', '2016-06-29 09:21:12.634')
+INSERT INTO Questions VALUES ('6ni6ok3ym7mf1p33lnez', 'mtsamis', 'mtsamis', '2016-07-14 14:02:47.190')
+INSERT INTO Questions VALUES ('am8ehyc8byjqgar0jgpub9', 'sarahedo', 'sarahedo', '2017-03-04 05:22:47.190')
 
-INSERT INTO Questions VALUES ('loxhs1bqm25b708cmbf3g', 'tylermcginnis', 'tylermcginnis', '2016-12-24 18:42:47.190') --5
-INSERT INTO Questions VALUES ('vthrdm985a262al8qx3do', 'tylermcginnis', 'tylermcginnis', '2017-03-15 19:09:27.190') --6
-INSERT INTO Questions VALUES ('xj352vofupe1dqz9emx13r', 'mtsamis', 'mtsamis', '2017-05-01 02:16:07.190') --7, 8, 9
+INSERT INTO Questions VALUES ('loxhs1bqm25b708cmbf3g', 'tylermcginnis', 'tylermcginnis', '2016-12-24 18:42:47.190')
+INSERT INTO Questions VALUES ('vthrdm985a262al8qx3do', 'tylermcginnis', 'tylermcginnis', '2017-03-15 19:09:27.190') 
+INSERT INTO Questions VALUES ('xj352vofupe1dqz9emx13r', 'mtsamis', 'mtsamis', '2017-05-01 02:16:07.190')
 
---insert value for general table: Question and Answer
+UPDATE Questions SET AnswerId = 1 WHERE QuestionId = '8xf0y6ziyjabvozdd253nd'
+UPDATE Questions SET AnswerId = 2 WHERE QuestionId = '6ni6ok3ym7mf1p33lnez'
+UPDATE Questions SET AnswerId = 4 WHERE QuestionId = 'am8ehyc8byjqgar0jgpub9'
+UPDATE Questions SET AnswerId = 5 WHERE QuestionId = 'loxhs1bqm25b708cmbf3g'
+UPDATE Questions SET AnswerId = 6 WHERE QuestionId = 'vthrdm985a262al8qx3do'
+UPDATE Questions SET AnswerId = 7 WHERE QuestionId = 'xj352vofupe1dqz9emx13r'
+
+--DELETED TABLE: insert value for general table: Question and Answer 
 INSERT INTO QuestionAnswers VALUES ('8xf0y6ziyjabvozdd253nd', 1)
 INSERT INTO QuestionAnswers VALUES ('6ni6ok3ym7mf1p33lnez', 2)
 INSERT INTO QuestionAnswers VALUES ('6ni6ok3ym7mf1p33lnez', 3)
@@ -74,31 +76,13 @@ USE Employee_Polls
 SELECT * FROM [Employee_Polls].[dbo].[Users]
 SELECT * FROM [Employee_Polls].[dbo].[Answers]
 SELECT * FROM [Employee_Polls].[dbo].[Questions]
-SELECT * FROM QuestionAnswers
 
+-- GET Questions answered by author ( Author is sarahedo, example)
+SELECT QuestionId,  VotedOptionOne, TextOptionOne, VotedOptionTwo, TextOptionTwo 
+FROM Questions qu LEFT JOIN Answers ans ON qu.AnswerId = ans.AnswerId 
+ WHERE VotedOptionOne LIKE '%sarahedo%' OR VotedOptionTwo  LIKE '%sarahedo%'
 
-SELECT UserId,
-       AnsweredQuestions,
-       CreatedQuestions,
-       AvatarURL
-FROM
-  (SELECT VotedOption, SUM(VoteCount) AS AnsweredQuestions
-   FROM
-     (SELECT VotedOptionOne AS VotedOption, COUNT(*) AS VoteCount
-      FROM Answers
-      GROUP BY VotedOptionOne
-      UNION ALL 
-	  SELECT VotedOptionTwo AS VotedOption, COUNT(*) AS VoteCount
-      FROM Answers
-      GROUP BY VotedOptionTwo) AS CombinedVotes
-   GROUP BY VotedOption) AS T1
-INNER JOIN
-  (SELECT Users.UserId AS Author,
-          COALESCE(COUNT(Questions.QuestionId), 0) AS CreatedQuestions,
-          Users.AvatarURL
-   FROM Users
-   LEFT JOIN Questions ON Questions.Author = Users.UserId
-   GROUP BY Users.UserId,
-            Users.AvatarURL) AS T2 ON T1.VotedOption = T2.UserId
-ORDER BY AnsweredQuestions DESC
-SELECT * FROM SETTINGS WHERE [PARAMETER_NAME] = 'ORDER_BY_ANSWERED_QUESTIONS'
+-- GET Questions unanswered by author ( Author is sarahedo, example)
+SELECT QuestionId,  VotedOptionOne, TextOptionOne, VotedOptionTwo, TextOptionTwo 
+FROM Questions qu LEFT JOIN Answers ans ON qu.AnswerId = ans.AnswerId 
+WHERE VotedOptionOne NOT LIKE '%sarahedo%' AND VotedOptionTwo NOT LIKE '%sarahedo%';
